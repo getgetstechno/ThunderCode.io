@@ -40,6 +40,12 @@
   max-width: 800px;
 }
 
+.picture_text_duo {
+  display: inline;
+  width: 80%;
+  max-width: 800px;
+}
+
 .text_image {
   border-radius: 5px;
 }
