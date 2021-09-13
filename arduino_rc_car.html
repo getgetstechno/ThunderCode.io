@@ -92,7 +92,7 @@
     <div class="container">
       <!--Section: Content-->
       <section class="text-center">
-        <h2 class="title_text"><strong>introduction</strong></h2>
+        <h2 class="title_text"><strong>Introduction</strong></h2>
           <div class="text_text">
             I already made a video about it on youtube. Here I explain everything, that’s why I will not write it again here.
             But I will add some mark points and information that can be useful. Also I will place the arduino code underneed.
@@ -115,258 +115,258 @@
         <h2 class="title_text"><strong>Arduino receiver code</strong></h2>
           <pre class="arduino_code">
             <code class="arduino_lines">
-#include <SPI.h>                              // library for SPI pipe between UNO and NRF24L01
-#include <nRF24L01.h>  	                      // library for NRF24L01 module
-#include <RF24.h>  	                          // library for radio module
-#include <Servo.h>                            // library to control the servo motor
+              #include <SPI.h>                              // library for SPI pipe between UNO and NRF24L01
+              #include <nRF24L01.h>  	                      // library for NRF24L01 module
+              #include <RF24.h>  	                          // library for radio module
+              #include <Servo.h>                            // library to control the servo motor
 
-RF24 radio(7, 8);    	                        // initialise the radio pin for CE ans CSN (pin 7 and 8)
-const byte address[6] = "00001";              // Address (same fot receiver and transmitter)
-Servo servo1; 	                              // name of the servo motor (servo1)
-int servo1Value;                              // variable for the value (degree) of the servo motor
+              RF24 radio(7, 8);    	                        // initialise the radio pin for CE ans CSN (pin 7 and 8)
+              const byte address[6] = "00001";              // Address (same fot receiver and transmitter)
+              Servo servo1; 	                              // name of the servo motor (servo1)
+              int servo1Value;                              // variable for the value (degree) of the servo motor
 
-int ledState = LOW;                           // variable to make the leds blinking (more info downstair)
-unsigned long previousMillis = 0;             // variable to make the leds blinking (more info downstair)
-unsigned long interval = 400;                 // variable for time that the leds gonna blink (400 milliseconds = 0.4 sec)
-int ledState2 = LOW;                          // variable to make the leds blinking (more info downstair)
-unsigned long previousMillis2 = 0;            // variable to make the leds blinking (more info downstair)
-unsigned long interval2 = 400;                // variable for time that the leds gonna blink (400 milliseconds = 0.4 sec)
-struct Data_Package                           // Initialise a structure with the data we gonna receive
-{
-  byte tSwitch1;                              // variable for the data that we receive from tSwitch1 (toggle switch 1)  	Need to be the same on the receiver and the transmitter
-  byte tSwitch2;                              // variable for the data that we receive from tSwitch2 (toggle switch 2)  	Need to be the same on the receiver and the transmitter
-  byte tSwitch3;                              // variable for the data that we receive from tSwitch3 (toggle switch 3)  	Need to be the same on the receiver and the transmitter
-  byte tSwitch4;                              // variable for the data that we receive from tSwitch4 (toggle switch 4)  	Need to be the same on the receiver and the transmitter
-  byte j1PotX;                                // variable for the data that we receive from the X-axe of the joystick   	Need to be the same on the receiver and the transmitter
-  byte j1PotY;                                // variable for the data that we receive from the Y-axe of the joystick   	Need to be the same on the receiver and the transmitter
-  byte j1Button;                              // variable for the data that we receive from the button of the joystick  	Need to be the same on the receiver and the transmitter
-};
+              int ledState = LOW;                           // variable to make the leds blinking (more info downstair)
+              unsigned long previousMillis = 0;             // variable to make the leds blinking (more info downstair)
+              unsigned long interval = 400;                 // variable for time that the leds gonna blink (400 milliseconds = 0.4 sec)
+              int ledState2 = LOW;                          // variable to make the leds blinking (more info downstair)
+              unsigned long previousMillis2 = 0;            // variable to make the leds blinking (more info downstair)
+              unsigned long interval2 = 400;                // variable for time that the leds gonna blink (400 milliseconds = 0.4 sec)
+              struct Data_Package                           // Initialise a structure with the data we gonna receive
+              {
+                byte tSwitch1;                              // variable for the data that we receive from tSwitch1 (toggle switch 1)  	Need to be the same on the receiver and the transmitter
+                byte tSwitch2;                              // variable for the data that we receive from tSwitch2 (toggle switch 2)  	Need to be the same on the receiver and the transmitter
+                byte tSwitch3;                              // variable for the data that we receive from tSwitch3 (toggle switch 3)  	Need to be the same on the receiver and the transmitter
+                byte tSwitch4;                              // variable for the data that we receive from tSwitch4 (toggle switch 4)  	Need to be the same on the receiver and the transmitter
+                byte j1PotX;                                // variable for the data that we receive from the X-axe of the joystick   	Need to be the same on the receiver and the transmitter
+                byte j1PotY;                                // variable for the data that we receive from the Y-axe of the joystick   	Need to be the same on the receiver and the transmitter
+                byte j1Button;                              // variable for the data that we receive from the button of the joystick  	Need to be the same on the receiver and the transmitter
+              };
 
-Data_Package data;                            // Create a variable with the above structure
+              Data_Package data;                            // Create a variable with the above structure
 
 
-void setup()                                  // SETUP SECTION : first think that the arduino gonna do (1 time)
-{
-  Serial.begin(9600);                         // initialise the Serial communication to 9600 bits/second
+              void setup()                                  // SETUP SECTION : first think that the arduino gonna do (1 time)
+              {
+                Serial.begin(9600);                         // initialise the Serial communication to 9600 bits/second
 
-  radio.begin();                              // initialise the Radio communication
-  radio.openReadingPipe(0, address);          // initialise the radio module for reading (receiver) on the address that we set upstair (00001)
-  radio.setAutoAck(false);                    // initialise the radio module
-  radio.setDataRate(RF24_250KBPS);            // initialise the radio module
-  radio.setPALevel(RF24_PA_LOW);              // initialise the radio communication
-  radio.startListening();                     // put the radio module on receiver mode (NRF24L01 can be use as a receiver and a transmitter at the same time)
+                radio.begin();                              // initialise the Radio communication
+                radio.openReadingPipe(0, address);          // initialise the radio module for reading (receiver) on the address that we set upstair (00001)
+                radio.setAutoAck(false);                    // initialise the radio module
+                radio.setDataRate(RF24_250KBPS);            // initialise the radio module
+                radio.setPALevel(RF24_PA_LOW);              // initialise the radio communication
+                radio.startListening();                     // put the radio module on receiver mode (NRF24L01 can be use as a receiver and a transmitter at the same time)
 
-  pinMode(2, OUTPUT);                         // initialise pin 2 to output for the led of the turn signal
-  pinMode(5, OUTPUT);                         // initialise pin 5 to output for the led of the turn signal
-  pinMode(6, OUTPUT);                         // initialise pin 6 to output for the led of the front lights
-  pinMode(3, OUTPUT);                         // initialise pin 3 to output for the led of the rear lights
-  pinMode(9, OUTPUT);                         // initialise pin 9 to control the sense of the motor
-  pinMode(10, OUTPUT);                        // initialise pin 10 to control the sense of the motor
-  pinMode(0, OUTPUT);                         // initialise pin 12 to output for the buzzer speaker
-  servo1.attach(4);                           // initialise pin 4 to the place were the servo motor is attached
-}
-void loop()                                   // LOOP SECTION : after the setup section, the Arduino gone do this all the time until he has no power more
-{
- if (radio.available())                       // if the radio available something, he ...
-  {
-    radio.read(&data, sizeof(Data_Package));     // read all the data that he receive
-  }
+                pinMode(2, OUTPUT);                         // initialise pin 2 to output for the led of the turn signal
+                pinMode(5, OUTPUT);                         // initialise pin 5 to output for the led of the turn signal
+                pinMode(6, OUTPUT);                         // initialise pin 6 to output for the led of the front lights
+                pinMode(3, OUTPUT);                         // initialise pin 3 to output for the led of the rear lights
+                pinMode(9, OUTPUT);                         // initialise pin 9 to control the sense of the motor
+                pinMode(10, OUTPUT);                        // initialise pin 10 to control the sense of the motor
+                pinMode(0, OUTPUT);                         // initialise pin 12 to output for the buzzer speaker
+                servo1.attach(4);                           // initialise pin 4 to the place were the servo motor is attached
+              }
+              void loop()                                   // LOOP SECTION : after the setup section, the Arduino gone do this all the time until he has no power more
+              {
+               if (radio.available())                       // if the radio available something, he ...
+                {
+                  radio.read(&data, sizeof(Data_Package));     // read all the data that he receive
+                }
 
-//..................................................................................................................................................................
+              //..................................................................................................................................................................
 
-servo1Value = map(data.j1PotX, 0, 255, 0, 70);   // take the last data of the x-axis of the joystick that he receive and change this one into value to 0 and 70
-servo1.write(servo1Value);                       // make the servo turning with the value that we make above (0, 70 degrees)
+              servo1Value = map(data.j1PotX, 0, 255, 0, 70);   // take the last data of the x-axis of the joystick that he receive and change this one into value to 0 and 70
+              servo1.write(servo1Value);                       // make the servo turning with the value that we make above (0, 70 degrees)
 
-//..................................................................................................................................................................
+              //..................................................................................................................................................................
 
-if (data.tSwitch1 == HIGH)                        // if the last data of the toggle switch (1) = 1 ...
-  {
-   unsigned long currentMillis = millis();        // make a variable with the millis() (time sinds the arduino is on)
-   if (currentMillis - previousMillis > interval) // if we have a interval from more than 400 millisecund than we ...
- 	{
-  	previousMillis = currentMillis;               // say that previousMillis is now egual to currentMillis
-  	if (ledState == LOW)                          // if ledstate was LOW (off)...
-    	{
-     	(ledState = HIGH);                          // ledState is now HIGH
-     	}
-   	else                                          // if ledState was HIGH (on) ...
-     	{
-    	   (ledState = LOW);                         // ledState is now LOW
-    	}
- 	digitalWrite(2, ledState);                      // put the led on or off is function of ledState
- 	}
-  }
-else                                              // if the last data of the toggle switch 1 = 0 ...
-  {
-    digitalWrite(2, LOW);                          // put the led off
-  }
-                                                  // This proces is very useful if you want to make an interruption without using function delay()
+              if (data.tSwitch1 == HIGH)                        // if the last data of the toggle switch (1) = 1 ...
+                {
+                 unsigned long currentMillis = millis();        // make a variable with the millis() (time sinds the arduino is on)
+                 if (currentMillis - previousMillis > interval) // if we have a interval from more than 400 millisecund than we ...
+               	{
+                	previousMillis = currentMillis;               // say that previousMillis is now egual to currentMillis
+                	if (ledState == LOW)                          // if ledstate was LOW (off)...
+                  	{
+                   	(ledState = HIGH);                          // ledState is now HIGH
+                   	}
+                 	else                                          // if ledState was HIGH (on) ...
+                   	{
+                  	   (ledState = LOW);                         // ledState is now LOW
+                  	}
+               	digitalWrite(2, ledState);                      // put the led on or off is function of ledState
+               	}
+                }
+              else                                              // if the last data of the toggle switch 1 = 0 ...
+                {
+                  digitalWrite(2, LOW);                          // put the led off
+                }
+                                                                // This proces is very useful if you want to make an interruption without using function delay()
 
-//..................................................................................................................................................................
+              //..................................................................................................................................................................
 
-if (data.tSwitch2 == HIGH)                        // if the last data of the toggle switch 2 = 1 ...
-  {
-   unsigned long currentMillis2 = millis();             // make a variable with the millis() (time sinds the arduino is on)
-   if (currentMillis2 - previousMillis2 > interval2)    // if we have a interval from more than 400 millisecund than we ...
-  	{
-    	previousMillis2 = currentMillis2;                     // say that previousMillis is now egual to currentMillis
-    	if (ledState2 == LOW)                                 // if ledstate was LOW (off)...
-     	{
-     	  (ledState2 = HIGH);                                 // ledState is now HIGH
-     	}
-    	else                                                 // if ledState was HIGH (on) ...
-     	{
-     	  (ledState2 = LOW);                                   // ledState is now LOW
-     	}
-    	digitalWrite(5, ledState2);                            // put the led on or off is function of ledState
-  	}
-  }
-else                                                    // if the last data of the toggle switch 2 = 0 ...
-  {
-    digitalWrite(5, LOW);                                  // put the led off
-  }
-                                                        // This proces is very useful if you want to make an interruption without using function delay()
+              if (data.tSwitch2 == HIGH)                        // if the last data of the toggle switch 2 = 1 ...
+                {
+                 unsigned long currentMillis2 = millis();             // make a variable with the millis() (time sinds the arduino is on)
+                 if (currentMillis2 - previousMillis2 > interval2)    // if we have a interval from more than 400 millisecund than we ...
+                	{
+                  	previousMillis2 = currentMillis2;                     // say that previousMillis is now egual to currentMillis
+                  	if (ledState2 == LOW)                                 // if ledstate was LOW (off)...
+                   	{
+                   	  (ledState2 = HIGH);                                 // ledState is now HIGH
+                   	}
+                  	else                                                 // if ledState was HIGH (on) ...
+                   	{
+                   	  (ledState2 = LOW);                                   // ledState is now LOW
+                   	}
+                  	digitalWrite(5, ledState2);                            // put the led on or off is function of ledState
+                	}
+                }
+              else                                                    // if the last data of the toggle switch 2 = 0 ...
+                {
+                  digitalWrite(5, LOW);                                  // put the led off
+                }
+                                                                      // This proces is very useful if you want to make an interruption without using function delay()
 
-//..................................................................................................................................................................
+              //..................................................................................................................................................................
 
-if (data.tSwitch3 == HIGH)                              // if the last data of the toggle switch 3 = 1 ...
-  {
-    digitalWrite(6, HIGH);                                // put the led on
-  }
-else                                                    // if the last data of the toggle switch 3 = 0 ...
-  {
-    digitalWrite(6, LOW);                                 // put the led off
-  }
-//.................................................................................................................................................................
-if (data.tSwitch4 == HIGH)                              // if the last data of the toggle switch 4 = 1 ...
-  {
-    digitalWrite(0, HIGH);                                // put the led on
-  }
-else                                                    // if the last data of the toggle switch 4 = 0 ...
-  {
-    digitalWrite(0, LOW);                                 // put the led off
-  }
-//.................................................................................................................................................................
+              if (data.tSwitch3 == HIGH)                              // if the last data of the toggle switch 3 = 1 ...
+                {
+                  digitalWrite(6, HIGH);                                // put the led on
+                }
+              else                                                    // if the last data of the toggle switch 3 = 0 ...
+                {
+                  digitalWrite(6, LOW);                                 // put the led off
+                }
+              //.................................................................................................................................................................
+              if (data.tSwitch4 == HIGH)                              // if the last data of the toggle switch 4 = 1 ...
+                {
+                  digitalWrite(0, HIGH);                                // put the led on
+                }
+              else                                                    // if the last data of the toggle switch 4 = 0 ...
+                {
+                  digitalWrite(0, LOW);                                 // put the led off
+                }
+              //.................................................................................................................................................................
 
-if (data.j1PotY > 150)                                  // if the last data from the y-axis of the joystick is greater than 150 ...
-  {
-     digitalWrite(9, LOW);                                // pin 9 and 10 are antagonist to make the motor turn in one sense
-     digitalWrite(10, HIGH);                              // pin 9 and 10 are antagonist to make the motor turn in one sense
-     analogWrite(11, HIGH);                               // control the energy that's coming from the 9V battery (HIGH = max power of the battery)
-  }
-if (data.j1PotY < 104)	                                // if the last data from the y-axis of the joystick is less than 104 ...
-  {
-     digitalWrite(9, HIGH);                               // pin 9 and 10 are antagonist to make the motor turn in one sense
-     digitalWrite(10, LOW);                               // pin 9 and 10 are antagonist to make the motor turn in one sense
-     analogWrite(11, HIGH);                               // control the energy that's coming from the 9V battery (HIGH = max power of the battery)
-  }
-if (data.j1PotY > 104 && data.j1PotY < 150)             // if the last data from the y-axis of the joystick is between 104 and 150 than ...
-  {
-     digitalWrite(9, LOW);                                // pin 9 and 10 are the same. So the motor can't drive
-     digitalWrite(10, LOW);                               // pin 9 and 10 are the same. So the motor can't drive
-  }
+              if (data.j1PotY > 150)                                  // if the last data from the y-axis of the joystick is greater than 150 ...
+                {
+                   digitalWrite(9, LOW);                                // pin 9 and 10 are antagonist to make the motor turn in one sense
+                   digitalWrite(10, HIGH);                              // pin 9 and 10 are antagonist to make the motor turn in one sense
+                   analogWrite(11, HIGH);                               // control the energy that's coming from the 9V battery (HIGH = max power of the battery)
+                }
+              if (data.j1PotY < 104)	                                // if the last data from the y-axis of the joystick is less than 104 ...
+                {
+                   digitalWrite(9, HIGH);                               // pin 9 and 10 are antagonist to make the motor turn in one sense
+                   digitalWrite(10, LOW);                               // pin 9 and 10 are antagonist to make the motor turn in one sense
+                   analogWrite(11, HIGH);                               // control the energy that's coming from the 9V battery (HIGH = max power of the battery)
+                }
+              if (data.j1PotY > 104 && data.j1PotY < 150)             // if the last data from the y-axis of the joystick is between 104 and 150 than ...
+                {
+                   digitalWrite(9, LOW);                                // pin 9 and 10 are the same. So the motor can't drive
+                   digitalWrite(10, LOW);                               // pin 9 and 10 are the same. So the motor can't drive
+                }
 
-//.................................................................................................................................................................
+              //.................................................................................................................................................................
 
-if (data.j1Button == 0)                                   // if the last data of the joystick button = 0 ...
-  {
-    tone (3, 75);                                          // pit a frequency of 75 Hz on pin 3 (claxon)
-  }
-else                                                      // if the last data of the joystick button = 1 ...
-  {
-    noTone(3);                                             // send no frequency
-  }
-//................................................................................................................................................................
+              if (data.j1Button == 0)                                   // if the last data of the joystick button = 0 ...
+                {
+                  tone (3, 75);                                          // pit a frequency of 75 Hz on pin 3 (claxon)
+                }
+              else                                                      // if the last data of the joystick button = 1 ...
+                {
+                  noTone(3);                                             // send no frequency
+                }
+              //................................................................................................................................................................
 
-// like the transmitter we send the data on the serial communication so that we can see if we have a problem.
-// If the value of the transmitter is not the same as for the receiver than you have a problem with the communication
+              // like the transmitter we send the data on the serial communication so that we can see if we have a problem.
+              // If the value of the transmitter is not the same as for the receiver than you have a problem with the communication
 
-Serial.println(data.tSwitch1);                            // send data to the serial communication
-Serial.println(data.tSwitch2);                            // send data to the serial communication
-Serial.println(data.tSwitch3);                            // send data to the serial communication
-Serial.println(data.tSwitch4);                            // send data to the serial communication
-Serial.println(data.j1PotX);                              // send data to the serial communication
-Serial.println(data.j1PotY);                              // send data to the serial communication
-Serial.println(data.j1Button);                            // send data to the serial communication
-delay(200);                                               // wait 200 millisecund so that you have less bugs but you gonna have less precision
-}
+              Serial.println(data.tSwitch1);                            // send data to the serial communication
+              Serial.println(data.tSwitch2);                            // send data to the serial communication
+              Serial.println(data.tSwitch3);                            // send data to the serial communication
+              Serial.println(data.tSwitch4);                            // send data to the serial communication
+              Serial.println(data.j1PotX);                              // send data to the serial communication
+              Serial.println(data.j1PotY);                              // send data to the serial communication
+              Serial.println(data.j1Button);                            // send data to the serial communication
+              delay(200);                                               // wait 200 millisecund so that you have less bugs but you gonna have less precision
+              }
             </code>
           </pre>
 
-        <h2 class="title_text"><strong>Arduino transmitter code</strong></h2>
-          <pre class="arduino_code">
-            <code class="arduino_lines">
-#include <SPI.h>                                // library for SPI pipe between UNO and NRF24L01
-#include <nRF24L01.h>                               // library for NRF24L01 module
-#include <RF24.h>                               // library for radio modules
-#include <Wire.h>                               // library for NRF24L01 module
+      <h2 class="title_text"><strong>Arduino transmitter code</strong></h2>
+        <pre class="arduino_code">
+          <code class="arduino_lines">
+            #include <SPI.h>                                // library for SPI pipe between UNO and NRF24L01
+            #include <nRF24L01.h>                               // library for NRF24L01 module
+            #include <RF24.h>                               // library for radio modules
+            #include <Wire.h>                               // library for NRF24L01 module
 
-#define t1 2                                    	// define toggle switch 1 on pin 2
-#define t2 4                                    	// define toggle switch 2 on pin 4
-#define t3 5                                    	// define toggle switch 3 on pin 5
-#define t4 3                                    	// define toggle switch 4 on pin 3
-#define b1 6                                    	// define joystick button on pin 6
+            #define t1 2                                    	// define toggle switch 1 on pin 2
+            #define t2 4                                    	// define toggle switch 2 on pin 4
+            #define t3 5                                    	// define toggle switch 3 on pin 5
+            #define t4 3                                    	// define toggle switch 4 on pin 3
+            #define b1 6                                    	// define joystick button on pin 6
 
-RF24 radio(7, 8);                               	// We need to say were we put the CE and CSN pin (7 = CE, 8 = CSN)
-const byte address[6] = "00001";                  // Address (same for receiver and transmitter)
+            RF24 radio(7, 8);                               	// We need to say were we put the CE and CSN pin (7 = CE, 8 = CSN)
+            const byte address[6] = "00001";                  // Address (same for receiver and transmitter)
 
-struct Data_Package                               // Initialise a structure with the data that we gonna send
-{
-  byte tSwitch1;                                	// data from toggle switch 1            	Need to be the same on the receiver and the transmitter
-  byte tSwitch2;                                	// data from toggle switch 2            	Need to be the same on the receiver and the transmitter
-  byte tSwitch3;                                	// data from toggle switch 3            	Need to be the same on the receiver and the transmitter
-  byte tSwitch4;                                	// data from toggle switch 4            	Need to be the same on the receiver and the transmitter
-  byte j1PotX;                                  	// data from the x-axis of the joystick 	Need to be the same on the receiver and the transmitter
-  byte j1PotY;                                  	// data from the y-axis of the joystick 	Need to be the same on the receiver and the transmitter
-  byte j1Button;                                	// data from the button of the joystick Need to be the same on the receiver and the transmitter
-};
-Data_Package data;                                // create a variable with the above structure
+            struct Data_Package                               // Initialise a structure with the data that we gonna send
+            {
+              byte tSwitch1;                                	// data from toggle switch 1            	Need to be the same on the receiver and the transmitter
+              byte tSwitch2;                                	// data from toggle switch 2            	Need to be the same on the receiver and the transmitter
+              byte tSwitch3;                                	// data from toggle switch 3            	Need to be the same on the receiver and the transmitter
+              byte tSwitch4;                                	// data from toggle switch 4            	Need to be the same on the receiver and the transmitter
+              byte j1PotX;                                  	// data from the x-axis of the joystick 	Need to be the same on the receiver and the transmitter
+              byte j1PotY;                                  	// data from the y-axis of the joystick 	Need to be the same on the receiver and the transmitter
+              byte j1Button;                                	// data from the button of the joystick Need to be the same on the receiver and the transmitter
+            };
+            Data_Package data;                                // create a variable with the above structure
 
-void setup()                                    	// SETUP SECTION : first think that the arduino gonna do (1 time)
-{
-  Serial.begin(9600);                           	// initialise the serial communication to 9600 bits/second
-  radio.begin();                                	// initialise the Radio communication
-  radio.openWritingPipe(address);               	// initialise the radio module for reading (receiver) on the address that we set upstair (00001)
-  radio.setAutoAck(false);                      	// initialise the Radio module
-  radio.setDataRate(RF24_250KBPS);                // initialise the Radio module
-  radio.setPALevel(RF24_PA_LOW);                  // initialise the Radio communication
+            void setup()                                    	// SETUP SECTION : first think that the arduino gonna do (1 time)
+            {
+              Serial.begin(9600);                           	// initialise the serial communication to 9600 bits/second
+              radio.begin();                                	// initialise the Radio communication
+              radio.openWritingPipe(address);               	// initialise the radio module for reading (receiver) on the address that we set upstair (00001)
+              radio.setAutoAck(false);                      	// initialise the Radio module
+              radio.setDataRate(RF24_250KBPS);                // initialise the Radio module
+              radio.setPALevel(RF24_PA_LOW);                  // initialise the Radio communication
 
-  pinMode(t1, INPUT_PULLUP);                      // Initialse pin t1 (2) as INPUT_PULLUP
-  pinMode(t2, INPUT_PULLUP);                      // Initialse pin t2 (4) as INPUT_PULLUP
-  pinMode(t3, INPUT_PULLUP);                      // Initialse pin t3 (5) as INPUT_PULLUP
-  pinMode(t4, INPUT_PULLUP);                      // Initialse pin t4 (3) as INPUT_PULLUP
-  pinMode(b1, INPUT_PULLUP);                      // Initialse pin b1 (6) as INPUT_PULLUP
+              pinMode(t1, INPUT_PULLUP);                      // Initialse pin t1 (2) as INPUT_PULLUP
+              pinMode(t2, INPUT_PULLUP);                      // Initialse pin t2 (4) as INPUT_PULLUP
+              pinMode(t3, INPUT_PULLUP);                      // Initialse pin t3 (5) as INPUT_PULLUP
+              pinMode(t4, INPUT_PULLUP);                      // Initialse pin t4 (3) as INPUT_PULLUP
+              pinMode(b1, INPUT_PULLUP);                      // Initialse pin b1 (6) as INPUT_PULLUP
 
-  data.tSwitch1 = 1;                             	// initialise the data of toggle switch 1 to 1
-  data.tSwitch2 = 1;                             	// initialise the data of toggle switch 2 to 1
-  data.tSwitch3 = 1;                             	// initialise the data of toggle switch 3 to 1
-  data.tSwitch4 = 1;                             	// initialise the data of toggle switch 4 to 1
-  data.j1PotX = 127;                            	// initialise the data of the x-axis of the joystick to 127
-  data.j1PotY = 127;                            	// initialise the data of the y-axis of the joystick to 127
-  data.j1Button = 1;                             	// initialise the data of the joystick button to 1
-}
-void loop()                                     	// LOOP SECTION : after the setup section, the arduino gonna do this all time until he has no power more
-{
-  data.tSwitch1 = digitalRead(t1);              	// Say that he can find the value of toggle 1 by reading pin t1 (2)
-  data.tSwitch2 = digitalRead(t2);              	// Say that he can find the value of toggle 2 by reading pin t2 (4)
-  data.tSwitch3 = digitalRead(t3);              	// Say that he can find the value of toggle 3 by reading pin t1 (5)
-  data.tSwitch4 = digitalRead(t4);              	// Say that he can find the value of toggle 4 by reading pin t1 (4)
-  data.j1PotX = map(analogRead(A2), 0, 1023, 0, 255); // Find the value of the x-axis of the joystick on pin A2. He need to change the value from 0-1023 to 0-255
-  data.j1PotY = map(analogRead(A0), 0, 1023, 0, 255); // Find the value of the y-axis of the joystick on pin A0. He need to change the value from 0-1023 to 0-255
-  data.j1Button = digitalRead(b1);              	// Say that he can find the value of the joystick button by reading pin b1 (6)
+              data.tSwitch1 = 1;                             	// initialise the data of toggle switch 1 to 1
+              data.tSwitch2 = 1;                             	// initialise the data of toggle switch 2 to 1
+              data.tSwitch3 = 1;                             	// initialise the data of toggle switch 3 to 1
+              data.tSwitch4 = 1;                             	// initialise the data of toggle switch 4 to 1
+              data.j1PotX = 127;                            	// initialise the data of the x-axis of the joystick to 127
+              data.j1PotY = 127;                            	// initialise the data of the y-axis of the joystick to 127
+              data.j1Button = 1;                             	// initialise the data of the joystick button to 1
+            }
+            void loop()                                     	// LOOP SECTION : after the setup section, the arduino gonna do this all time until he has no power more
+            {
+              data.tSwitch1 = digitalRead(t1);              	// Say that he can find the value of toggle 1 by reading pin t1 (2)
+              data.tSwitch2 = digitalRead(t2);              	// Say that he can find the value of toggle 2 by reading pin t2 (4)
+              data.tSwitch3 = digitalRead(t3);              	// Say that he can find the value of toggle 3 by reading pin t1 (5)
+              data.tSwitch4 = digitalRead(t4);              	// Say that he can find the value of toggle 4 by reading pin t1 (4)
+              data.j1PotX = map(analogRead(A2), 0, 1023, 0, 255); // Find the value of the x-axis of the joystick on pin A2. He need to change the value from 0-1023 to 0-255
+              data.j1PotY = map(analogRead(A0), 0, 1023, 0, 255); // Find the value of the y-axis of the joystick on pin A0. He need to change the value from 0-1023 to 0-255
+              data.j1Button = digitalRead(b1);              	// Say that he can find the value of the joystick button by reading pin b1 (6)
 
-  radio.write(&data, sizeof(Data_Package));       // send all the data that he collected from the sensors. (Data_package = structure that we create before)
-                                                	// We put the data on the Serial communication so that we see what the problem is if it's not working
-  Serial.println(data.tSwitch1);                	// put the value of toggle 1 on the serial communication
-  Serial.println(data.tSwitch2);                	// put the value of toggle 2 on the serial communication
-  Serial.println(data.tSwitch3);                	// put the value of toggle 3 on the serial communication
-  Serial.println(data.tSwitch4);                	// put the value of toggle 4 on the serial communication
-  Serial.println(data.j1PotX);                  	// put the value of the x-axis of the joystick on the serial communication
-  Serial.println(data.j1PotY);                  	// put the value of the y-axis of the joystick on the serial communication
-  Serial.println(data.j1Button);                	// put the value of the joystick button on the serial communication
-  delay(200);                                   	// wait 200 milliseconds before making this block again
-                                                	// This one need to be high to have no bugs but we lose precision.
-}
+              radio.write(&data, sizeof(Data_Package));       // send all the data that he collected from the sensors. (Data_package = structure that we create before)
+                                                            	// We put the data on the Serial communication so that we see what the problem is if it's not working
+              Serial.println(data.tSwitch1);                	// put the value of toggle 1 on the serial communication
+              Serial.println(data.tSwitch2);                	// put the value of toggle 2 on the serial communication
+              Serial.println(data.tSwitch3);                	// put the value of toggle 3 on the serial communication
+              Serial.println(data.tSwitch4);                	// put the value of toggle 4 on the serial communication
+              Serial.println(data.j1PotX);                  	// put the value of the x-axis of the joystick on the serial communication
+              Serial.println(data.j1PotY);                  	// put the value of the y-axis of the joystick on the serial communication
+              Serial.println(data.j1Button);                	// put the value of the joystick button on the serial communication
+              delay(200);                                   	// wait 200 milliseconds before making this block again
+                                                            	// This one need to be high to have no bugs but we lose precision.
+            }
           </code>
         </pre>
 

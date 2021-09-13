@@ -240,6 +240,136 @@
             our 4 pins that will change the sense of rotation of our motor. Last thing is to set the dataSpeed as our
             PWM value for our both motors. Here’s the entire arduino code :
            </div>
+         <h3 class="title_text"><strong>Arduino Code</strong></h3>
+           <pre class="arduino_code">
+             <code class="arduino_lines">
+                #include <BluetoothSerial.h>
+
+                BluetoothSerial SerialBT;
+
+                byte dataIn;
+                byte dataNum1;
+                byte dataNum2;
+                byte dataNum3;
+                byte dataSpeed;
+
+                // variables motor 1
+                const byte motor1base1 = 33;
+                const byte motor1base2 = 25;
+
+                const byte motor1spec = 14;
+                const byte PWM1_ch = 0;
+                const byte PWM1_res = 8;
+                const word PWM1_freq = 1000;
+
+
+                // variables motor 2
+                const byte motor2base1 = 27;
+                const byte motor2base2 = 26;
+
+                const byte motor2spec = 12;
+                const byte PWM2_ch = 0;
+                const byte PWM2_res = 8;
+                const word PWM2_freq = 1000;
+
+
+
+                void setup() {
+                  SerialBT.begin("esp32_test");
+                  Serial.begin(115200);
+                  Serial.println("The divice started, now you can pair it with bluetooth...");
+
+                  pinMode(motor1base1, OUTPUT);
+                  pinMode(motor1base2, OUTPUT);
+                  pinMode(motor2base1, OUTPUT);
+                  pinMode(motor2base2, OUTPUT);
+
+                  ledcAttachPin(motor1spec, PWM1_ch);
+                  ledcSetup(PWM1_ch, PWM1_freq, PWM1_res);
+
+                  ledcAttachPin(motor2spec, PWM2_ch);
+                  ledcSetup(PWM2_ch, PWM2_freq, PWM2_res);
+                }
+
+                void loop() {
+                  if (SerialBT.available()) {
+                    dataIn = SerialBT.read();
+                    Serial.write(dataIn);
+                    delay(20);
+                    dataNum1 = SerialBT.read();
+                    Serial.write(dataNum1);
+                    delay(20);
+                    dataNum2 = SerialBT.read();
+                    Serial.write(dataNum2);
+                    delay(20);
+                    dataNum3 = SerialBT.read();
+                    Serial.write(dataNum3);
+                    Serial.println();
+                    if (dataNum3 >= 48 && dataNum3 <= 57) {
+                      calculateHundred();
+                    } else {
+                      calculateTenths();
+                    }
+                    delay(20);
+                  }
+
+                  if(dataIn == 66) { // dataIn == B (backward)
+                    digitalWrite(motor1base1, LOW);
+                    digitalWrite(motor1base2, HIGH);
+                    digitalWrite(motor2base1, LOW);
+                    digitalWrite(motor2base2, HIGH);
+                    ledcWrite(PWM1_ch, dataSpeed);
+                    ledcWrite(PWM2_ch, dataSpeed);
+                  }
+
+                  if(dataIn == 70) { // dataIn == F (forward)
+                    digitalWrite(motor1base1, HIGH);
+                    digitalWrite(motor1base2, LOW);
+                    digitalWrite(motor2base1, HIGH);
+                    digitalWrite(motor2base2, LOW);
+                    ledcWrite(PWM1_ch, dataSpeed);
+                    ledcWrite(PWM2_ch, dataSpeed);
+                  }
+
+                  if(dataIn == 83) { // dataIn == S (stop)
+                    digitalWrite(motor1base1, LOW);
+                    digitalWrite(motor1base2, LOW);
+                    digitalWrite(motor2base1, LOW);
+                    digitalWrite(motor2base2, LOW);
+                    ledcWrite(PWM1_ch, 0);
+                    ledcWrite(PWM2_ch, 0);
+                  }
+
+                  if(dataIn == 76) { // dataIn == L (left)
+                    digitalWrite(motor1base1, LOW);
+                    digitalWrite(motor1base2, HIGH);
+                    digitalWrite(motor2base1, HIGH);
+                    digitalWrite(motor2base2, LOW);
+                    ledcWrite(PWM1_ch, dataSpeed);
+                    ledcWrite(PWM2_ch, dataSpeed);
+                  }
+
+                  if(dataIn == 82) { // dataIn == R (right)
+                    digitalWrite(motor1base1, HIGH);
+                    digitalWrite(motor1base2, LOW);
+                    digitalWrite(motor2base1, LOW);
+                    digitalWrite(motor2base2, HIGH);
+                    ledcWrite(PWM1_ch, dataSpeed);
+                    ledcWrite(PWM2_ch, dataSpeed);
+                  }
+                }
+
+                void calculateHundred() {
+                  dataSpeed = (dataNum1*100) + (dataNum2*10) + dataNum3 + 48;
+                  Serial.println(dataSpeed);
+                }
+
+                void calculateTenths() {
+                  dataSpeed = (dataNum1*10) + dataNum2 - 16;
+                  Serial.println(dataSpeed);
+                }
+             </code>
+           </pre>
           <h3 class="title_text"><strong>Conclusion</strong></h3>
             <div class="text_text">
               Voila, now you know how I made it, hope you enjoyed it, don't hesitate to watch my other
