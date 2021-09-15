@@ -40,11 +40,31 @@
   max-width: 800px;
 }
 
-.picture_text_duo {
-  display: inline;
-  width: 80%;
+
+
+
+
+
+
+.row_images {
+  display: flex;
   max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+.column_image {
+  flex: 33.33%;
+  padding: 15px;
+}
+
+
+
+
+
+
+
+
 
 .text_image {
   border-radius: 5px;
