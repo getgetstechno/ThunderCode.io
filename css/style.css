@@ -40,9 +40,15 @@
   max-width: 800px;
 }
 
+.sub_text {
+  color: black;
+  padding: 5px;
+}
 
-
-
+.subsub_text {
+  color: gray;
+  padding: 5px;
+}
 
 
 
