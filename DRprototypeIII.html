@@ -84,9 +84,9 @@
     <div class="container">
       <!--Section: Content-->
       <section class="text-center">
-        <h2 class="title_text"><strong>Introduction</strong></h2>
+        <h2 class="title_text"><strong>1. Introduction</strong></h2>
 
-          <h4 class="sub_text"><strong>Context</strong></h4>
+          <h4 class="sub_text"><strong>1.1. Context</strong></h4>
             <div class="text_text">
               This webpage is the result of a research assignment for my physics course. This is a very applied paper with a smaller emphasis on the theory behind it.
               <br>
@@ -96,10 +96,10 @@
               <br>
             </div>
 
-          <h4 class="sub_text"><strong>Issue</strong></h4>
-
-            <h5 class="subsub_text">Reasearch Questions</h5>
+          <h4 class="sub_text"><strong>1.2. Issue</strong></h4>
               <div class="text_text">
+                <strong>Reasearch Questions :</strong>
+                <br>
                 So the ultimate goal is to make a robot that can win a darts game. So I will try to answer the following questions:
                 <br>
                 How does initial speed affect accuracy?
@@ -109,8 +109,10 @@
                 To what extent is it better or worse than a professional player?
               </div>
 
-            <h5 class="subsub_text">hypothesis</h5>
+
               <div class="text_text">
+                <strong>hypothesis :</strong>
+                <br>
                 I have never seen a robot that was built to automatically play darts, so it will certainly not be easy.
                 But I think it is feasible. In this video we see an industrial arm robot throwing a dart. It is important
                 to note that the robot is not designed to throw a dart as its primary purpose. Also, the creator of the robot
@@ -125,10 +127,11 @@
                 who darts regularly. But whether he will be better than a professional player, I doubt.
               </div>
 
-          <h4 class="sub_text"><strong>Background</strong></h4>
+          <h4 class="sub_text"><strong>1.3. Background</strong></h4>
 
-            <h5 class="subsub_text">Darts</h5>
               <div class="text_text">
+                <strong>Darts</strong>
+                <br>
                 For this research assignment I use an electronic dartboard. The goal is for the robot to win a 301 game.
                 The aim here is to get from 301 to exactly 0 points as quickly as possible in series of triplets. If you
                 fall below 0 points, you have to start back where your previous triplet ended.
@@ -137,17 +140,19 @@
                 the aim is to finish with a double. However, I'm not going to work with that rule.
               </div>
 
-        <h3 class="title_text"><strong>Preparation</strong></h3>
+        <h3 class="title_text"><strong>2. Preparation</strong></h3>
 
-          <h4 class="sub_text"><strong>Handling way</strong></h4>
+          <h4 class="sub_text"><strong>2.1. Handling way</strong></h4>
 
             <div class="text_text">
               My research assignment follows the trial and error method.
+              <br>
               <div class="row_images">
                 <div class="column_image">
                   <img src="img/protoIII/trial_and_error.png" alt="trial and error" style="width:100%">
                 </div>
               </div>
+              <br>
               The intention will therefore be to make the robot step by step. With each prototype I will determine
               whether I am closer to my goal or not. If not, I'll have to determine what went wrong and see how I can fix it.
               If the solution is effective, then I can work on the next step to reach my goal.
@@ -158,7 +163,7 @@
               canon through arduino and then gradually automating it by a raspberry pi.
             </div>
 
-          <h4 class="sub_text"><strong>Material</strong></h4>
+          <h4 class="sub_text"><strong>2.2. Material</strong></h4>
 
             <div class="text_text">
               I could use both a 3d printer and lego to make the robot. So I first had to see which
@@ -172,66 +177,114 @@
               also better adapted to the trial and error method I use.
             </div>
 
-          <h4 class="sub_text"><strong>Planning</strong></h4>
+          <h4 class="sub_text"><strong>2.3. Planning</strong></h4>
 
             <div class="text_text">
               I started this research assignment in October. The official deadline is June 31.
             </div>
 
-        <h3 class="title_text"><strong>Execution</strong></h3>
+        <h3 class="title_text"><strong>3. Execution</strong></h3>
 
-          <h4 class="sub_text"><strong>Finding the right system</strong></h4>
+          <h4 class="sub_text"><strong>3.1. Finding the right system</strong></h4>
 
             <div class="text_text">
               There are several shooting systems that I could use to throw a dart. That the raison why I will first determine which
               one is the best, in my example.
               So I'm going to first look at the positives and negatives points of different shooting systems.
-            </div>
-            <div class="row_images">
-              <div class="column_image">
-                <img src="img/protoIII/system1.PNG" alt="lego vs 3d printer" style="width:100%">
-              </div>
-            </div>
-            <div class="row_images">
-              <div class="column_image">
-                <img src="img/protoIII/system2.PNG" alt="lego vs 3d printer" style="width:100%">
-              </div>
-            </div>
-            <div class="text_text">
-              (*) learning opportunity 1 :
-              <br>
-              The idea is to make a canon that only moves the darts and no other
-              parts like the arm of a trebuchet. That ensures better efficiency.
               <br><br>
-              (**) learning opportunity 2:
+              <strong>Pression Cannon :</strong>
               <br>
-              Because the elastic of a crossbow forms a triangle, it is impossible to place Lego parts in the entire triangle.
-              That means that it is difficult to make the canon strong enough.
+              In a pression cannon the projectile serves as a cap in a tube that connects 2 airtight compartments. When we
+              make the pressure of the front compartment go lower and/or increase the pressure of the rear compartment, then
+              the aur wants to go from the rear to the front. This is only possible by pussing the cap, which launches the
+              projectile. A pression cannon can be really efficient and powerful. Not a wonder that it is so mainly used. The
+              reason why I won’t use a pression for my darts cannon is that it is impossible to build in lego and even with a
+              3d-printer it has to be really strong otherwise you’re just creating a bomb! And that’s not the real mission I gave
+              to myself.
               <br><br>
-              Here are some prototypes that were made:
+              <strong>Magnetic launcher :</strong>
+              <br>
+              It works on the same principles as a motor. Instead of placing the coils rotationally, they are now just set
+              on a straight line. I find it a really interesting mechanism, so I hope to work with it in another project.
+              But the problem today is that it is not so easy to make. And building it in lego, is I think quite impossible.
+              Certainly if you have to include the ability of changing the acceleration of the projectile. On the other hand
+              it can be really great because you don’t need any charging time.
+              <br><br>
+              <strong>Machine gun :</strong>
+              <br>
+              Here the principle is to let 2 motors rotate in opposite directions close together without touching each other.
+              The projectile is then placed between these two and will make contact with them. Because the motors are turning
+              in opposite directions, the projectile will be launched in a straight line. It is a great system because it is easy
+              to build but the main problem is that you can’t aim precisely and that the gun isn’t adapted to launch a dart.
+              <br><br>
+              <strong>Prototype I, Trebuchet :</strong>
+              <br>
+              The first prototype I made was a trebuchet. I started with that because it was easy to build and that I
+              thought it could be strong and precise enough to launch a dart. Unfortunately it wasn’t. The main problems
+              were that you needed a lot of legos to build the frame of the cannon. Even when I made something really strong,
+              the problem was that a lot of force was needed to rotate the lever and the projectile. This made in sort many
+              pieces injured stress. So for prototype II, I will have to choose a throwing mechanism where the only thing that
+              moves is the projectile and nothing else.
+              <br>
               <div class="row_images">
                 <div class="column_image">
-                  <img src="img/bluetooth_rc_car/notConnectedNew.jpg" alt="not connected" style="width:100%">
-                </div>
-                <div class="column_image">
-                  <img src="img/bluetooth_rc_car/connectedNew.jpg" alt="connected" style="width:100%">
-                </div>
-                <div class="column_image">
-                  <img src="img/bluetooth_rc_car/connectedNew.jpg" alt="connected" style="width:100%">
-                </div>
-                <div class="column_image">
-                  <img src="img/bluetooth_rc_car/connectedNew.jpg" alt="connected" style="width:100%">
+                  <img src="img/protoIII/trebuchet.jpg" alt="crossbow" style="width:100%">
                 </div>
               </div>
               <br>
-              In the end, I could conclude that the slingshot is the best shooting system in the first place.
-              However, that will have to be ensured with the next prototypes.
+              <strong>Prototype II, Crossbow :</strong>
               <br>
-              All Arduino codes can be found on my github page.
+              For the second prototype, I choose to build a crossbow. It is precise, buildable in lego, not too big, easily
+              adjustable and the only part that moves is the dart. What could possibly go wrong? Well the main issue was the
+              fact that you couldn’t reinforce the structure in the entire triangle that the elastic forms when it was charged.
+              Meanwhile another issue was that the crossbow wasn’t that much precise. This is due to the fact that the launch
+              track was so small that the dart had to accelerate rapidly.
+              <br>
+              <div class="row_images">
+                <div class="column_image">
+                  <img src="img/protoIII/crossbow1.jpg" alt="crossbow" style="width:100%">
+                </div>
+              </div>
+              <br>
+              <strong>Slingshot Catapult :</strong>
+              <br>
+              The crossbow was already a good attempt to launch a dart. I then decided to fix the issues by bringing the 2 supports
+              points of the elastics closer to each other. That had as consequence that the launch track could be longer. Otherwise,
+               the slingshot has the same advantages as the crossbow. Not a wonder that I decided to continue with this type of launch
+               system.
+               <br><br>
+               <strong>Conclusion</strong>
+               <br>
+               In the end, I could conclude that the best launch system was the slingshot catapult. In prototype III you will see that I
+               am building the first working prototype. Even if it won’t be exactly a slingshot, it is mainly inspired by it.
             </div>
-            <a class="btn btn-primary m-2" href="DRprototypeIV.html" role="button" rel="nofollow"
-              >PART 2 of robot</a>
-            <br>
+
+          <h4 class="sub_text"><strong>3.2. Prototype III, the first working prototype :</strong></h4>
+
+            <div class="text_text">
+              <strong>objective :</strong>
+              <br>
+              The main objective is to make clear that the slingshot is the correct shooting system and to gain experience in throwing
+              darts to make the next prototypes more robust and better. The robot will therefore (for now) not work automatically,
+              but will be controlled by potentiometers.
+              <br><br>
+              <strong>How does it works ?</strong>
+              <br>
+              The firing system uses 2 stepper motors, the first of which has to pull the firing attachment to which the dart hangs,
+              the second then stretches on the elastic. The servo motor serves as a trigger. The operation of the canon can be described
+              in the following loop:
+              <br>
+              Firstly stepper motor 1 will pull the firing attachment towards himself. He will do that by winding up a wire. When the attachment
+              finally is at the same height as the trigger, the servo motor will then hold the attachment tight. Next the second stepper motor
+              will stretch the elastic. Afterwards the stepper motor 1 will wind down the wire. Finally once the robot is ready to shoot, the
+              servo motor will pull down and the dart is then launched. If you then want to shoot again you will firstly have to unstretch the
+              elastic using stepper motor 2. Lots of words for something easy, the next video explains it way better than me.
+              <br><br>
+              <div class="video_text">
+                <iframe class="text_video" src="https://www.youtube.com/embed/aJzou8A3Vpw"></iframe>
+              </div>
+            </div>
+
         <h4 class="title_text"><strong>Thank You</strong></h4>
 
       </section>
