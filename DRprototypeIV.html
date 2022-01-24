@@ -84,141 +84,24 @@
     <div class="container">
       <!--Section: Content-->
       <section class="text-center">
-        <h2 class="title_text"><strong>objective</strong></h2>
 
-          <h4 class="sub_text"><strong>Issue</strong></h4>
+        <div class="text_text">
+          If you haven't seen the first part of the project. I highly suggest you read it.
+          You will have a more global view of what I am doing.
+          <br><br>
+          <a class="btn btn-primary m-2" href="DRprototypeIII.html" role="button" rel="nofollow"
+            >Parts 1, first prototype</a>
+        </div>
 
-            <h5 class="subsub_text">Reasearch Questions</h5>
-              <div class="text_text">
-                So the ultimate goal is to make a robot that can win a darts game. So I will try to answer the following questions:
-                <br>
-                How does initial speed affect accuracy?
-                How does the firing angle affect the accuracy?
-                How does shooting distance affect accuracy?
-                What is the general accuracy of the canon?
-                To what extent is it better or worse than a professional player?
-              </div>
+        <h2 class="title_text"><strong>Prototype IV : upgrading prototype III</strong></h2>
 
-            <h5 class="subsub_text">hypothesis</h5>
-              <div class="text_text">
-                I have never seen a robot that was built to automatically play darts, so it will certainly not be easy.
-                But I think it is feasible. In this video we see an industrial arm robot throwing a dart. It is important
-                to note that the robot is not designed to throw a dart as its primary purpose. Also, the creator of the robot
-                had a lot of resources, which I don't have. My robot would be different in that sense, because the robot's
-                primary purpose will be to play darts.
-                <br><br>
-                My hypothesis is that the accuracy decreases the further the projectile is thrown. I also think the robot
-                is most accurate when the darts and board are perpendicular to each other after firing. That depends on the
-                height of the robot and the board, so you have to adjust the initial speed and the shooting angle.
-                <br><br>
-                Overall accuracy I think depends on several factors. I do think my robot will be more accurate than a person
-                who darts regularly. But whether he will be better than a professional player, I doubt.
-              </div>
+          <h4 class="sub_text"><strong>1. Goal</strong></h4>
+              hahaha
 
-          <h4 class="sub_text"><strong>Background</strong></h4>
 
-            <h5 class="subsub_text">Darts</h5>
-              <div class="text_text">
-                For this research assignment I use an electronic dartboard. The goal is for the robot to win a 301 game.
-                The aim here is to get from 301 to exactly 0 points as quickly as possible in series of triplets. If you
-                fall below 0 points, you have to start back where your previous triplet ended.
-                <br><br>
-                You can make doubles and triples by firing into the outer and inner circle respectively. Normally,
-                the aim is to finish with a double. However, I'm not going to work with that rule.
-              </div>
+            <h4 class="sub_text"><strong>2.1. Handling way</strong></h4>
 
-        <h3 class="title_text"><strong>Preparation</strong></h3>
 
-          <h4 class="sub_text"><strong>Handling way</strong></h4>
-
-            <div class="text_text">
-              My research assignment follows the trial and error method.
-              <div class="row_images">
-                <div class="column_image">
-                  <img src="img/protoIII/trial_and_error.png" alt="trial and error" style="width:100%">
-                </div>
-              </div>
-              The intention will therefore be to make the robot step by step. With each prototype I will determine
-              whether I am closer to my goal or not. If not, I'll have to determine what went wrong and see how I can fix it.
-              If the solution is effective, then I can work on the next step to reach my goal.
-              <br><br>
-              Because it is a large, complex project, it is important to divide it into steps. I will therefore first
-              investigate which system is most adapted to shoot a dart. The intention is then to make the frame of the robot.
-              To which I can then add the electronics and the code. This will also be done in steps by first controlling the
-              canon through arduino and then gradually automating it by a raspberry pi.
-            </div>
-
-          <h4 class="sub_text"><strong>Material</strong></h4>
-
-            <div class="text_text">
-              I could use both a 3d printer and lego to make the robot. So I first had to see which
-              one is most adapted to my project.
-              <div class="row_images">
-                <div class="column_image">
-                  <img src="img/protoIII/lego3d.PNG" alt="lego vs 3d printer" style="width:100%">
-                </div>
-              </div>
-              So I will work with Lego. More precisely with lego technic. These are
-              also better adapted to the trial and error method I use.
-            </div>
-
-          <h4 class="sub_text"><strong>Planning</strong></h4>
-
-            <div class="text_text">
-              I started this research assignment in October. The official deadline is June 31.
-            </div>
-
-        <h3 class="title_text"><strong>Execution</strong></h3>
-
-          <h4 class="sub_text"><strong>Finding the right system</strong></h4>
-
-            <div class="text_text">
-              There are several shooting systems that I could use to throw a dart. That the raison why I will first determine which
-              one is the best, in my example.
-              So I'm going to first look at the positives and negatives points of different shooting systems.
-            </div>
-            <div class="row_images">
-              <div class="column_image">
-                <img src="img/protoIII/system1.PNG" alt="lego vs 3d printer" style="width:100%">
-              </div>
-            </div>
-            <div class="row_images">
-              <div class="column_image">
-                <img src="img/protoIII/system2.PNG" alt="lego vs 3d printer" style="width:100%">
-              </div>
-            </div>
-            <div class="text_text">
-              (*) learning opportunity 1 :
-              <br>
-              The idea is to make a canon that only moves the darts and no other
-              parts like the arm of a trebuchet. That ensures better efficiency.
-              <br><br>
-              (**) learning opportunity 2:
-              <br>
-              Because the elastic of a crossbow forms a triangle, it is impossible to place Lego parts in the entire triangle.
-              That means that it is difficult to make the canon strong enough.
-              <br><br>
-              Here are some prototypes that were made:
-              <div class="row_images">
-                <div class="column_image">
-                  <img src="img/bluetooth_rc_car/notConnectedNew.jpg" alt="not connected" style="width:100%">
-                </div>
-                <div class="column_image">
-                  <img src="img/bluetooth_rc_car/connectedNew.jpg" alt="connected" style="width:100%">
-                </div>
-                <div class="column_image">
-                  <img src="img/bluetooth_rc_car/connectedNew.jpg" alt="connected" style="width:100%">
-                </div>
-                <div class="column_image">
-                  <img src="img/bluetooth_rc_car/connectedNew.jpg" alt="connected" style="width:100%">
-                </div>
-              </div>
-              <br>
-              In the end, I could conclude that the slingshot is the best shooting system in the first place.
-              However, that will have to be ensured with the next prototypes.
-              <br>
-              All Arduino codes can be found on my github page.
-            </div>
             <a class="btn btn-primary m-2" href="DRprototypeIV.html" role="button" rel="nofollow"
               >PART 2 of robot</a>
             <br>
