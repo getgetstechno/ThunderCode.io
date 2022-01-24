@@ -84,6 +84,24 @@
     <div class="container">
       <!--Section: Content-->
       <section class="text-center">
+
+        <div class="row_images">
+          <div class="column_image">
+            <img src="img/protoIII/crossbow1.jpg" alt="crossbow" style="width:100%">
+          </div>
+          <div class="column_image">
+            <img src="img/protoIII/trebuchet.jpg" alt="trial and error" style="width:100%">
+          </div>
+        </div>
+        <div class="row_images">
+          <div class="column_image">
+            <img src="img/protoIII/IMG-6028.JPG" alt="trial and error" style="width:100%">
+          </div>
+          <div class="column_image">
+            <img src="img/protoIII/IMG-6029.JPG" alt="trial and error" style="width:100%">
+          </div>
+        </div>
+
         <h2 class="title_text"><strong>1. Introduction</strong></h2>
 
           <h4 class="sub_text"><strong>1.1. Context</strong></h4>
@@ -225,7 +243,7 @@
               the problem was that a lot of force was needed to rotate the lever and the projectile. This made in sort many
               pieces injured stress. So for prototype II, I will have to choose a throwing mechanism where the only thing that
               moves is the projectile and nothing else.
-              <br>
+              <br><br>
               <div class="row_images">
                 <div class="column_image">
                   <img src="img/protoIII/trebuchet.jpg" alt="crossbow" style="width:100%">
@@ -239,7 +257,7 @@
               fact that you couldn’t reinforce the structure in the entire triangle that the elastic forms when it was charged.
               Meanwhile another issue was that the crossbow wasn’t that much precise. This is due to the fact that the launch
               track was so small that the dart had to accelerate rapidly.
-              <br>
+              <br><br>
               <div class="row_images">
                 <div class="column_image">
                   <img src="img/protoIII/crossbow1.jpg" alt="crossbow" style="width:100%">
@@ -258,18 +276,19 @@
                In the end, I could conclude that the best launch system was the slingshot catapult. In prototype III you will see that I
                am building the first working prototype. Even if it won’t be exactly a slingshot, it is mainly inspired by it.
             </div>
+            <br>
 
           <h4 class="sub_text"><strong>3.2. Prototype III, the first working prototype :</strong></h4>
 
             <div class="text_text">
               <strong>objective :</strong>
-              <br>
+              <br><br>
               The main objective is to make clear that the slingshot is the correct shooting system and to gain experience in throwing
               darts to make the next prototypes more robust and better. The robot will therefore (for now) not work automatically,
               but will be controlled by potentiometers.
               <br><br>
               <strong>How does it works ?</strong>
-              <br>
+              <br><br>
               The firing system uses 2 stepper motors, the first of which has to pull the firing attachment to which the dart hangs,
               the second then stretches on the elastic. The servo motor serves as a trigger. The operation of the canon can be described
               in the following loop:
@@ -279,20 +298,67 @@
               will stretch the elastic. Afterwards the stepper motor 1 will wind down the wire. Finally once the robot is ready to shoot, the
               servo motor will pull down and the dart is then launched. If you then want to shoot again you will firstly have to unstretch the
               elastic using stepper motor 2. Lots of words for something easy, the next video explains it way better than me.
-              <br><br>
+              <br><br><br>
               <div class="video_text">
                 <iframe class="text_video" src="https://www.youtube.com/embed/aJzou8A3Vpw"></iframe>
               </div>
-              <br>
+              <br><br><br>
               The reason there are two stepper motors is because individually they don't have enough power to stretch the elastic.
               <br>
               You can shoot higher or lower by moving the piston. This causes the canon to tilt backwards or forwards. You can move
               horizontally by moving the turntable at the bottom, which then rotates the entire cannon.
+              <br><br>
+              <div class="row_images">
+                <div class="column_image">
+                  <img src="img/protoIII/IMG-6028.JPG" alt="proto III" style="width:100%">
+                  <img src="img/protoIII/IMG-6029.JPG" alt="proto III" style="width:100%">
+                </div>
+              </div>
+              <br><br>
+              The electronic circuit is quite straightforward. I will not explain here how a
+              stepper motor works (you can watch the next <a href="https://www.youtube.com/watch?v=0qwrnUeSpYQ">video</a> if you have to).
               <br>
-              The electronic circuit and the arduino code I'm using can be found at the following github
-              <a href="https://github.com/getgetstechno/darts-robot.git">repository</a>.
+              <div class="row_images">
+                <div class="column_image">
+                  <img src="img/protoIII/circuitfinal.PNG" alt="circuit" style="width:100%">
+                </div>
+              </div>
             </div>
+            The arduino code is really easy to understand. I use the arduino library Stepper.h. It is not well coded but
+            it works. With it, I can control the 2 stepper motor of the cannon with 2 potentiometers. The last potentiometer
+            and the button control the servo motor. The arduino code can be found <a href="https://github.com/getgetstechno/darts-robot/blob/main/prototype_I/prototype_I.ino">
+            here</a>, on my github repository.
+            <br><br>
+            <strong>improvements to make :</strong>
+            <br><br>
+            The robot is working and is capable of throwing a dart, however it is not perfect. The first improvement
+            is the arduino code. For now, it’s impossible to control both motors at the same time because (I guess)
+            I’m using the stepper.h library. That’s the reason why the loading time is so long. To encounter this problem,
+            I will have to improve my code. But I could also change a lot of things on the robot itself. Instead of using
+            two stepper motors to load the canon, I think it should be possible to use only one by changing the elastics.
+            The other solution is to put not 1 but 3 cannons on each other. Logically the loading time will then be divided
+            by 3.
+            <br><br>
+            The second problem is the precision of the robot. All darts, without changing anything on the robot, come in
+            the same cirkel with a radius of 7 cm. That is still not precise enough if I want to win a match against my
+            family members.
+            <br><br>
+            The third improvement is the horizontal aiming mechanism. For now, to aim more to the right, the robot has to
+            rotate entirely on itself. Because of the long distance to the board, the angle the robot has to form is really
+            small, something around 10°. The robot has to be therefore really precise. Another mechanism, like putting the
+            entire robot on wheels would probably work better.
+            <br><br>
+            To fully automate the robot, I will have to use at least 4 motors. That combined with all the sensors will
+            take a lot of GPIO (general purpose input/output) pins on the arduino. The solution will be to use another board
+            than the Arduino uno and to use some shift registers.
+            <br><br>
+            The goal now is to improve all these problems in the next prototype, Prototype IV!
+            <br><br>
 
+
+            <a class="btn btn-primary m-2" href="DRprototypeIV.html" role="button" rel="nofollow"
+              >PARTS 2 : Prototype IV</a>
+            <br><br>
         <h4 class="title_text"><strong>Thank You</strong></h4>
 
       </section>
