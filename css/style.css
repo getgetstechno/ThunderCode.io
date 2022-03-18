@@ -8,6 +8,7 @@
 
 .mb-3 {
   color: white;
+  font-size: 1.2em;
 }
 
 .card-body {
@@ -27,9 +28,16 @@
   padding: 30px;
 }
 
+.title_text_white {
+  font-size: 4em;
+  color: white;
+  padding: 30px;
+}
+
 .text_text {
   color: black;
   padding: 20px;
+  font-size: 1.2em;
 }
 
 .picture_text {
@@ -38,6 +46,7 @@
   margin-right: auto;
   width: 90%;
   max-width: 800px;
+  font-size: 1.1em;
 }
 
 .sub_text {

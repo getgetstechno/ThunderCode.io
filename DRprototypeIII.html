@@ -66,7 +66,7 @@
 
     <!-- Jumbotron -->
     <div id="intro" class="p-5 text-center bg-light">
-      <h1 class="mb-3 h2">DARTS ROBOT PROTOTYPE I & II and III</h1>
+      <h1 class="title_text_white">DARTS ROBOT PROTOTYPE I & II and III</h1>
       <p class="mb-3">First part of my DIY darts robot! The main goal is to build the robot and be able to control it.
       The automation will happen later. </p>
       <a class="btn btn-primary m-2" href="index.html" role="button" rel="nofollow"
@@ -320,38 +320,37 @@
                   <img src="img/protoIII/circuitfinal.PNG" alt="circuit" style="width:100%">
                 </div>
               </div>
+              The arduino code is really easy to understand. I use the arduino library Stepper.h. It is not well coded but
+              it works. With it, I can control the 2 stepper motor of the cannon with 2 potentiometers. The last potentiometer
+              and the button control the servo motor. The arduino code can be found <a href="https://github.com/getgetstechno/darts-robot/blob/main/prototype_I/prototype_I.ino">
+              here</a>, on my github repository.
+              <br><br>
+              <strong>improvements to make :</strong>
+              <br><br>
+              The robot is working and is capable of throwing a dart, however it is not perfect. The first improvement
+              is the arduino code. For now, it’s impossible to control both motors at the same time because (I guess)
+              I’m using the stepper.h library. That’s the reason why the loading time is so long. To encounter this problem,
+              I will have to improve my code. But I could also change a lot of things on the robot itself. Instead of using
+              two stepper motors to load the canon, I think it should be possible to use only one by changing the elastics.
+              The other solution is to put not 1 but 3 cannons on each other. Logically the loading time will then be divided
+              by 3.
+              <br><br>
+              The second problem is the precision of the robot. All darts, without changing anything on the robot, come in
+              the same cirkel with a radius of 7 cm. That is still not precise enough if I want to win a match against my
+              family members.
+              <br><br>
+              The third improvement is the horizontal aiming mechanism. For now, to aim more to the right, the robot has to
+              rotate entirely on itself. Because of the long distance to the board, the angle the robot has to form is really
+              small, something around 10°. The robot has to be therefore really precise. Another mechanism, like putting the
+              entire robot on wheels would probably work better.
+              <br><br>
+              To fully automate the robot, I will have to use at least 4 motors. That combined with all the sensors will
+              take a lot of GPIO (general purpose input/output) pins on the arduino. The solution will be to use another board
+              than the Arduino uno and to use some shift registers.
+              <br><br>
+              The goal now is to improve all these problems in the next prototype, Prototype IV!
+              <br><br>
             </div>
-            The arduino code is really easy to understand. I use the arduino library Stepper.h. It is not well coded but
-            it works. With it, I can control the 2 stepper motor of the cannon with 2 potentiometers. The last potentiometer
-            and the button control the servo motor. The arduino code can be found <a href="https://github.com/getgetstechno/darts-robot/blob/main/prototype_I/prototype_I.ino">
-            here</a>, on my github repository.
-            <br><br>
-            <strong>improvements to make :</strong>
-            <br><br>
-            The robot is working and is capable of throwing a dart, however it is not perfect. The first improvement
-            is the arduino code. For now, it’s impossible to control both motors at the same time because (I guess)
-            I’m using the stepper.h library. That’s the reason why the loading time is so long. To encounter this problem,
-            I will have to improve my code. But I could also change a lot of things on the robot itself. Instead of using
-            two stepper motors to load the canon, I think it should be possible to use only one by changing the elastics.
-            The other solution is to put not 1 but 3 cannons on each other. Logically the loading time will then be divided
-            by 3.
-            <br><br>
-            The second problem is the precision of the robot. All darts, without changing anything on the robot, come in
-            the same cirkel with a radius of 7 cm. That is still not precise enough if I want to win a match against my
-            family members.
-            <br><br>
-            The third improvement is the horizontal aiming mechanism. For now, to aim more to the right, the robot has to
-            rotate entirely on itself. Because of the long distance to the board, the angle the robot has to form is really
-            small, something around 10°. The robot has to be therefore really precise. Another mechanism, like putting the
-            entire robot on wheels would probably work better.
-            <br><br>
-            To fully automate the robot, I will have to use at least 4 motors. That combined with all the sensors will
-            take a lot of GPIO (general purpose input/output) pins on the arduino. The solution will be to use another board
-            than the Arduino uno and to use some shift registers.
-            <br><br>
-            The goal now is to improve all these problems in the next prototype, Prototype IV!
-            <br><br>
-
 
             <a class="btn btn-primary m-2" href="DRprototypeIV.html" role="button" rel="nofollow"
               >PARTS 2 : Prototype IV</a>
