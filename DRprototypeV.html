@@ -99,12 +99,9 @@
           “worked”.
           <br><br>
           <div class="column_image">
-            <img src="img/protoV/teaser1.jpg" alt="crossbow" style="width:100%">
-          </div>
-          <div class="column_image">
             <img src="img/protoV/teaser2.jpg" alt="crossbow" style="width:100%">
           </div>
-
+          <br>
           First we will see how I add all the sensors on the robot so that the robot can be “intelligent”. Next we will talk about
           my first strategie. The essence here is that I generated the numbers based on previous shots. A bit like how machine
           learning works. I then tried to use a python script and build my own sort of intelligent software. But I quickly gave it
@@ -129,9 +126,15 @@
             <div class="text_text">
               First thing I have to do is to set some eyes on my robot. Therefore we will use some HC-SR04 ultrasonic
               sensors and the mpu6050 accelerometer and gyroscope.
-              <br><br>
+              <br>
+              <div class="column_image">
+                <img src="img/protoV/right.jpg" alt="sensors" style="width:70%">
+              </div>
+              <br>
               The following link will guide you to a video about the ultrasonic sensor. It is good and will teach you the
               basics as well as the advanced libraries that I will use for my robot.
+              <a href="https://www.youtube.com/watch?v=6F1B_N6LuKw">https://www.youtube.com/watch?v=6F1B_N6LuKw</a>
+
               <br><br>
               For the robot I decided to use 4 ultrasonic sensors. 2 on the front size and 2 on the left size. Placing 2
               ultrasonic sensors on the same side seems like stupid because they will both normaly give the same value.
@@ -140,6 +143,14 @@
               If both distances are the same, then there is no problem and the robot is perpendicular to the board. If the
               distance is different then the sensors are broken or the robot is not perpendicular to the board.
               <br><br>
+              <div class="row_images">
+                <div class="column_image">
+                  <img src="img/protoV/good.PNG" alt="crossbow" style="width:100%">
+                </div>
+                <div class="column_image">
+                  <img src="img/protoV/bad.PNG" alt="crossbow" style="width:100%">
+                </div>
+              </div>
               One ultrasonic sensor needs 2 “data” pins. Which means that I will need 8 pins on the esp32 to control all the
               ultrasonic sensors. This number is way too much. The first solution is to use a shift register like I did for
               the motors. It is possible, but it’s really complex because everything has to be really time-precise. The solution
@@ -152,6 +163,7 @@
               I2C which means no more pins needed. The mpu6050 can be really useful in other projects that I want to do later
               like building a drone, plane or anything also that can move in 3 dimensions. You can find a full tutorial about
               the mpu6050 sensor here. I decided to use the same library and code architecture as in the video.
+              <a href="https://www.youtube.com/watch?v=XCyRXMvVSCw">https://www.youtube.com/watch?v=XCyRXMvVSCw</a>
               <br><br>
               Now having all these datas is great but I need to show them in a way or another to start working with them. The
               easiest solution would be to send these data like everything else to the serial monitor. This is easy but once
@@ -164,18 +176,24 @@
               So for quite a month, I tried to code a python script that could take the data of the serial monitor, display it
               in a cool GUI (graphical user interface) using KIVY or any other library and then control the robot using this
               program. Now like you can imagine this was a bit too complex. I runned into some python arduino conflicts that I
-              can really explain.
+              can't really explain.
               <br><br>
               For now I decided to use a simple lcd screen that will give me the basic information like in which status the robot
               is now loaded, the distance in front, the distance left and the tilt-angle of the robot.
               <br><br>
               Now a classic lcd screen (2x16) needs six pins to run, which I don’t have on the esp32. I solved this problem by
               using an lcd adapter. With it, I can control the LCD screen using I2C.
-              <br><br>
+              <br>
+              <div class="column_image">
+                <img src="img/protoV/lcd1.jpg" alt="crossbow" style="width:50%">
+              </div>
+              <br>
               I2C stands for inter-integrated circuit and is really popular among electronic circuits because a lot of data can
               be transferred from one microcontroller to another one using only 2 wires (SDA and SCL).
-              <br><br>
-              here you can find the entire electronic scheme of my project.
+              <br>
+              <div class="column_image">
+                <img src="img/protoV/circuit 2.jpg" alt="crossbow" style="width:80%">
+              </div>
             </div>
           <h3 class="title_text"><strong>Automating the robot</strong></h3>
             <div class="text_text">
@@ -183,12 +201,12 @@
               the shots.
               <br><br>
               So first thing first I have to automate the loading mechanism. A quick view of how this happens can be seen in the
-              next video.
+              next video. (still under construction)
               <br><br>
               To automate it I decided to divide the loading mechanism in 4 steps. The first one is to pull on the string until
               it comes behind the trigger level. Now this is easy to say because we can easily see where this is, but how can we
-              automate it ? I firstly thought I could do it just by saying to the motors that they need to turn for let’s say 30
-              seconds. Now the problem with interrupts is that everything has to happen as expected to work. If something goes
+              automate it? I firstly thought I could do it just by saying to the motors that they need to turn for let’s say 30
+              seconds. Now the problem with interrupts is that everything has to happen as expected to work. If anything goes
               wrong, like something prevents the pouch from moving or the motors don’t have enough power to move it, then bad
               things can happen. Second idea was to put a led inside the pouch and place a light sensor when it needs to stop.
               If I then see a peak in the light sensor, then I know the led just passed. This works theoretically great but
@@ -198,7 +216,7 @@
               <br><br>
               We know the best solution is the easiest one that does the job. Now if we look at our problem the easiest solution
               would be to set buttons that the pouch will press on one it is in the right place. There are three cannons so I had
-              to include 3 buttons. The code for it can be seen in the chargePartOne() function.
+              to include 3 buttons. The code for it can be seen in the chargePartOne() function. (code can be seen on <a href="https://github.com/getgetstechno/darts-robot/blob/main/MK10/MK10.ino">github</a>)
               <br><br>
               Now the second loading step was to pull down the trigger. This had to be done with sensors and like for step 1 I
               decided to use a simple push button. The code can be seen in chargePartTwo().
@@ -223,7 +241,10 @@
               Now my first strategy to automate the moving part of the robot was to use a 20x2 array for each cannon (So,
               there will be 3 arrays). The index corresponds to the target. The first row are the distances needed to shoot
               on the target, the second row are the angles.
-              <br><br>
+              <br>
+              <div class="column_image">
+                <img src="img/protoV/array.PNG" alt="crossbow" style="width:100%">
+              </div>
               The thing is now to find the right values to put in the arrays. Therefore I had to shoot a bunch of times with
               different distances and angles. Every time a target is hit, I will note it inside this spreadsheet. If we do
               this for example, 500 times, normally we should find the specific values that correspond to the target.
@@ -241,17 +262,20 @@
               average of these points, you can see that the chance to make errors are more likely to happen (my robot is not so
               precise). Even if all our shots are perfectly homogeneous like in target 16, then the average of these points will
               be the triple zone (red dot) in the target which means it won’t be the right target anymore.
-              <br><br>
-              So after several hours, I decided to change my strategy. I decided that the big brain won’t be the arduino anymore,
+              <br>
+              <div class="column_image">
+                <img src="img/protoV/draw.jpg" alt="crossbow" style="width:80%">
+              </div>
+              <br>
+              So after several hours of shooting, I decided to change my strategy. I decided that the big brain won’t be the arduino anymore,
               but myself. I will generate the distance and angle the arduino has to follow by entering the values myself. This has
               many advantages, first you can generate all combinations that exist which was not possible in the first strategy.
               The second thing is that you don’t have to shut down and pull the arduino out of the robot to generate a new
               combination. This was also a huge problem before because I lost quite a lot of time uploading new sketches.
-              This is also better for the environment.
+              (This is also better for the environment)
               <br><br>
-              Like always I wanted to do something too complex. My idea was that everything would be included in the app, you
-              could enter the angle and distance for the robot. You could change some settings for the robot, you could see
-              the history of every shot and result that had been done. I even thought I could code a little machine learning
+              Like always I wanted to do something too complex. My idea was to build an app where everything would be included, from the entering
+              of the angle and distance of the robot, to the settings and the history of every shot and result that had been done. I even thought I could code a little machine learning
               algorithm that would generate the perfect angle and distance needed to shoot in the target. All the communication
               between the smartphone and the esp32 would happen using bluetooth and not just by cable.
               <br><br>
@@ -266,9 +290,11 @@
               will only use 5 buttons on the controller (the arrows and OK buttons). The upper arrow will add one tenth to the
               distance needed while the lower arrow will subtract one tenth to the distance. For the units it’s the same but
               using the right and left arrow. Once you finish calibrating the distance, you press on OK to end this process.
-              I use the same process for the angle only then I divide the result by ten. In code this gives us.
+              I use the same process for the angle only then I divide the result by ten. In code this gives us :
               <br><br>
-              code infrarouge
+              <div class="column_image">
+                <img src="img/protoV/infrared.PNG" alt="crossbow" style="width:70%">
+              </div>
               <br><br>
               I can now generate the angle and distance as I want. To start the shouting mechanism, I decided to use the same
               logic as above. I have to enter the OK button to exit the while loop which will start the motor and move the
@@ -281,6 +307,7 @@
               still playing darts. Which means, using my robot isn’t cheating at all!
               <br><br>
               The entire code can be seen in github using the following link :
+              <br><a href="https://github.com/getgetstechno/darts-robot/blob/main/MK10/MK10.ino">https://github.com/getgetstechno/darts-robot/blob/main/MK10/MK10.ino</a>
             </div>
           <h3 class="title_text"><strong>Some of the encountered problems</strong></h3>
             <div class="text_text">
@@ -288,7 +315,7 @@
               question I questioned myself in page 1. The biggest question I wanted to answer was to know if the robot was
               better than me or not. If it is, then I can say that the project is a success.
               <br><br>
-              While I did some tests I encountered some new problems. The first one is that the robot while moving right
+              While I did some tests, I encountered some new problems. The first one is that the robot while moving right
               and left can also rotate a bit on itself. This means that the robot isn’t placed perpendicular to the board
               anymore.
               <br><br>
@@ -299,7 +326,11 @@
               pressure is due to the center of gravity that is not placed exactly in the center of the vehicle but more on the
               backside. One other thing is that the robot is connected to the ground with 2 cables (power source for the motor
               and for the esp32). These all exerts even more pressure on the back wheels which amplify the phenomena.
-              <br><br>
+              <br>
+              <div class="column_image">
+                <img src="img/protoV/ensemble1.jpg" alt="crossbow" style="width:60%">
+              </div>
+              <br>
               The solution I used was to extend the wheels. This means that the 4 external wheels are placed even further from
               the center of gravity. This will make it harder to rotate the robot for the same distance traveled. Problem fixed
               (for now).
@@ -329,14 +360,18 @@
               <br><br>
               How can we do that? We can make a relation where the steps depend on the distance needed to move. This is pretty
               easy and can be found in the following code part.
-              <br><br>
+              <br>
+              <div class="column_image">
+                <img src="img/protoV/code1.PNG" alt="crossbow" style="width:60%">
+              </div>
+              <br>
               Here you have all the information that led to my automated darts robot. You probably want to see it working,
-              well here it is.
+              well here it is. (video is coming)
               <br><br>
               A future thing that I could include is a temperature and humidity sensor because the distance calculated from
               the ultrasonic sensor depends on these parameters.
-
             </div>
+          <h3 class="title_text"><strong>Thank You</strong></h3>
     </div>
   </main>
   <!--Main layout-->
