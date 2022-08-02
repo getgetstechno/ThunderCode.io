@@ -68,9 +68,21 @@
   margin-right: auto;
 }
 
+.row_spec_images {
+  display: flex;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .column_image {
   flex: 33.33%;
   padding: 15px;
+}
+
+.spec_image {
+  flex: 10%;
+  padding: 10px;
 }
 
 
