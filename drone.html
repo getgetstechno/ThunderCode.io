@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="Learn how to make your own DIY, arduino lego rc car by using two arduino Uno and the nrf24l01 radio module.">
+    <title>ThunderCode.io/Drone project @ VUB</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+    <!-- MDB -->
+    <link rel="stylesheet" href="css/mdb.min.css" />
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+      <header>
+    <!-- Intro settings -->
+    <style>
+      #intro {
+        /* Margin to fix overlapping fixed navbar */
+        margin-top: 58px;
+      }
+      @media (max-width: 991px) {
+        #intro {
+          /* Margin to fix overlapping fixed navbar */
+          margin-top: 45px;
+        }
+      }
+    </style>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+      <div class="container-fluid">
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="https://getgetstechno.github.io/ThunderCode.io/">
+          <img src="img/icon/logo64.png" height="35" alt="logo" loading="lazy"
+            style="margin-top: -3px;" />
+        </a>
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarExample01"
+          aria-controls="navbarExample01" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarExample01">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" aria-current="page" href="index.html">HOME</a>
+            </li>
+
+          </ul>
+
+          <ul class="navbar-nav d-flex flex-row">
+            <!-- Icons -->
+            <li class="nav-item me-3 me-lg-0">
+              <a class="nav-link" href="https://github.com/getgetstechno?tab=repositories" rel="nofollow" target="_blank">
+                <i class="fab fa-github"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Navbar -->
+
+    <!-- Jumbotron -->
+    <div id="intro" class="p-5 text-center bg-light">
+      <h1 class="title_text_white">electrical and mechanical project (DRONE)</h1>
+      <p class="mb-3">In second year in my engineering studies at the VUB we had the opportunity to make a project related to mechanics and electronics. We had to build an autonomous drone capable of delivering vaccines to several hospital in Brussels.</p>
+      <a class="btn btn-primary m-2" href="index.html" role="button" rel="nofollow"
+        >All Projects</a>
+    </div>
+    <!-- Jumbotron -->
+  </header>
+  <!--Main Navigation-->
+
+  <!--Main layout-->
+  <main class="my-5">
+    <div class="container">
+      <!--Section: Content-->
+      <section class="text-center">
+        <h3 class="title_text"><strong>Autonomous drone project VUB</strong></h3>
+          <div class="column_image">
+              <img src="img/drone/finaldrone.png" alt="final drone" style="width:50%">
+          </div>
+        <h4 class="title_text"><strong>Introduction</strong></h4>
+          <div class="text_text">
+            In our second year, we had to complete four different group projects related to various fields of engineering. All of them are presented and explained on the following website. On this page, I will describe our approach to building an autonomous drone to carry vaccines to several hospitals in Brussels, near the VUB. This project is therefore associated with the field of mechanical and electrical engineering. This project was carried out over 6 days spread across 6 weeks with a team of 8 engineering students.
+            <br><br>
+            To build this drone, several problems had to be solved. We received several propellers from the assistants, so our first task was to determine how much lift each propeller could produce based on the tension and current, in order to identify the most suitable one for our drone. Therefore, we tested the lift-to-current ratio, which can be seen in the following figure.
+          </div>
+          <div class="column_image">
+              <img src="img/drone/propeller.png" alt="propeller test" style="width:70%">
+          </div>
+        <h4 class="title_text"><strong>electronics</strong></h4>
+          <div class="text_text">
+            This plot helped us determine which propeller was the best, considering other factors like its length and weight. 
+            <br>
+            The next significant aspect of the drone was to address all the electronics needed for flight. Due to the complexity of using four motors to fly, it is essential to use a flight controller. This device translates commands, such as "go left", from the controller into the correct PWM values for each motor. Besides the flight controller, the electronic components also include the receiver paired with the controller, a GPS module primarily used for autonomous flight, and a telemetry module to send flight data to a computer for analysis and communication during autonomous flight. Additionally, we used four ESCs and motors, along with a battery, to run everything properly.
+          </div>
+          <div class="column_image">
+              <img src="img/drone/electronic.png" alt="electronic circuit" style="width:60%">
+          </div>
+          <div class="text_text">
+            To program the flight controller, we used QGroundControl, a powerful tool capable of performing many functions. The problem is that it operates like a big black box. It would have been more enjoyable if we could have programmed it using an Arduino or built our own basic flight controller (which I might do in another project). In QGroundControl, we can calibrate and tune all the commands and settings for the motors, radio, sensors, and other components. As you can see in the image, it is also possible to configure planes, cars, helicopters, and other remote-controlled vehicles. It was quite interesting to get hands-on experience with it.
+          </div>
+          <div class="column_image">
+              <img src="img/drone/qgroundcontrol.png" alt="electronic circuit" style="width:60%">
+          </div>
+        <h4 class="title_text"><strong>Frame design</strong></h4>
+          <div class="column_image">
+              <img src="img/drone/arm.png" alt="crossbow" style="width:60%">
+          </div>
+          <div class="text_text">
+            Another aspect of this project was designing the drone's frame. It was first designed in Fusion 360 before being printed using the 3D printers at VUB. To achieve the best design, we had to minimize the amount of PLA used while ensuring the frame was stiff enough to withstand all the forces. To do this, we used the stress analysis function in Fusion 360. Several prototypes were made, as shown in the following pictures. Another important feature is that, based on some dimensions and the forces and moments the object will endure, it is possible to let Fusion generate the best possible part.
+          </div>
+          <div class="column_image">
+              <img src="img/drone/arm2.png" alt="crossbow" style="width:60%">
+          </div>
+          <div class="text_text">
+            In the end, our design looked like this. We added a basket underneath to carry the vaccines, as this was our primary objective.
+          </div>
+          <div class="column_image">
+              <img src="img/drone/assembly.png" alt="crossbow" style="width:60%">
+          </div>
+        <h4 class="title_text"><strong>flight test and conclusion</strong></h4>
+          <div class="text_text">
+            After assembling and printing all the parts, we achieved the desire result. We conducted several test flights and had opportunities to make some improvements. On the final day, we went to an aeroclub to test our autonomous drone in real safe conditions. It worked quite well but crashed after a few takeoffs. From the log files, we couldn’t determine exactly what caused the drone to crash. Overall, we were quite happy with our experience. Like our other projects, this one gave us many opportunities to improve our knowledge and problem-solving skills.
+          </div>
+
+      </section>
+      <!--Section: Content-->
+    </div>
+  </main>
+  <!--Main layout-->
+
+  <!--Footer-->
+  <footer class="bg-light text-lg-start">
+    <hr class="m-0" />
+    <div class="text-center py-4 align-items-center">
+      <p>Follow ThunderCode.io on GITHUB</p>
+      <a href="https://github.com/getgetstechno?tab=repositories" class="btn btn-primary m-1" role="button" rel="nofollow"
+        target="_blank">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2024 Copyright:
+      <a class="text-dark" href="blog-template.html">ThunderCode.io</a>
+    </div>
+    <div class="flaticon">
+      <div>Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!--Footer-->
+    <!-- MDB -->
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
