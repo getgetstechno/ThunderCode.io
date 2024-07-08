@@ -82,6 +82,9 @@
       <section class="text-center">
         <h3 class="title_text"><strong>Environmental technology : oxygen filter</strong></h3>
         <h4 class="title_text"><strong>Introduction</strong></h4>
+        <div class="column_image">
+          <img src="img/oxygenfilter/psaa.jpg" alt="image" style="width:40%">
+        </div>
           <div class="text_text">
             Air is composed of 78% of nitrogen and 21% of air with 1% of other gasses. Our task was to build a device capable of filtering the oxygen from the air to get higher purity rates. Our mission was to get to a flow rate of 70l/h with a purity of 40% O2 and a flow rate of 10l/h with a purity of 75%. So it has to be versatile. Purification of air has many useful cases like in hospitals and the food industry. 
             <br><br>
@@ -90,37 +93,46 @@
         <h4 class="title_text"><strong>PSA</strong></h4>
           <div class="text_text">
             PSA work by the principle of adsorption where specific molecules will get stuck under pressure while the other molecules will be able to move though some adsorbent molecules. The idea is that by using 2 pipes and several interconnection. We will be able due to the differential in pression between the 2 pipes to filtrate and clear the pipes by changing the pression at different times using automated valves. 
-            <br><br>
-            Essential for this technic to work is to use the appropriate absorbent molecules. Several materials where discussed like active alumina, active carbon, carbon molecular sieves and silicon gel. At the end we decided to use zeolites as these are the easiest and cheapest materials to use. Those are minerals made out of aluminum, oxygen and silicium in a special molecular structure. In the zeolites there exist several types. Some contains more aluminum or are bigger than others. These can have huge effect on the efficiency of the zeolites to adsorbate molecules. We decided to use the 5A zeolite. 
+            <div class="column_image">
+              <img src="img/oxygenfilter/schematicPSA.png" alt="image" style="width:40%">
+            </div>
+            <a href="https://www.researchgate.net/figure/Schematic-figure-of-the-Skarstrom-cycle-for-two-beds-PSA-and-pressure-history-through-the_fig1_354141387">See link for more reference.</a>
+            Essential for this technic to work is to use the appropriate absorbent molecules. Several materials where discussed like active alumina, active carbon, carbon molecular sieves and silicon gel. At the end we decided to use zeolites as these are the easiest and cheapest materials to use. Those are minerals made out of aluminum, oxygen and silicium in a special molecular structure. In the zeolites there exist several types. Some contains more aluminum or are bigger than others. These can have huge effect on the efficiency of the zeolites to adsorbate molecules. We decided to use the 5A zeolite. <a href="https://en.wikipedia.org/wiki/Zeolite">See link for more information.</a>
           </div>
         <h4 class="title_text"><strong>Humidity of adsorbants</strong></h4>
           <div class="text_text">
             One major problem when using zeolites is that their capability to adsorbate molecules is highly dependent of the humidity of the absorbent molecules. Air contains also humidity and so we had to know the effect of it. We made several tests with TGA (thermosgravimetric analysis) and using a more simple method with a weight. We came to the conclusion that around 16m% water could be adsorbed by the zeolite which means that less nitrogen could be adsorbed when the zeolites are not fully dry. 
           </div>
         <div class="column_image">
-          <img src="img/" alt="image" style="width:50%">
+          <img src="img/oxygenfilter/TGA.png" alt="TGA result" style="width:50%">
+        </div>
+        <div class="column_image">
+          <img src="img/oxygenfilter/weight.png" alt="weight percentage" style="width:50%">
         </div>
           <div class="text_text">
             The mechanism of opening and closing the valves between the two pipes can easily be found on internet. But they all have a major problem. They are complex in building and optimizing. They also need a lot of time to get to equilibrium which in our 3 days of testing will be to short. Therefore we decided to go for RPSA of Rapid Pressure Swing Adsorption. This one has as main advantage the fact that it uses only one pipe and 2 valves. The diagram of our system can be found on following picture.
           </div>
+        <div class="column_image">
+          <img src="img/oxygenfilter/schematic.png" alt="schematic" style="width:50%">
+        </div>
         <h4 class="title_text"><strong>PSA process</strong></h4>
           <div class="text_text">
             Because humidity is essential for the zeolites we will use dry air coming from the VUB. The idea is that dry air at a pression of 4 bar comes from the top right side. Once the feed valve is open, it can enter the pipe full of zeolites. The feed valve closes around 1 seconds after opening. Due to the differential of pression the zeolites will block a certain amount of nitrogen and let pass another amount of oxygen though the pipe. After a second the purge valve is open and so the pipe is cleaned because now the stuck nitrogen gas wants to go the left side tank (buffer vat) where the pression is lower. This occur for a couple of seconds before the purge valve is closed and the cycle starts again. The needle tap (naaldkraan) is there to make an even bigger differential of pression between the top and bottom of the pipe. Closing it will cause a smaller flow rate but a bigger purity level. At the end an oxygen sensor is placed to get the concentration. 2 flow rate sensors calculate the outcoming flow rate. 
-            <br><br>
+            <div class="column_image">
+              <img src="img/oxygenfilter/O2meter.png" alt="image" style="width:20%">
+            </div>
             The optimalisation of this process consist of changing the different times where the valves are open and closed. This has manly to be tested and optimized using our logics and not really calculations even though several systems like Langmuir can help understanding it. Other parameters like temperature and feed pressure are not discussed on this page. 
-            <br><br>
             Other parameters like the bad length and the dimensions of the buffer tank have been calculated manually. 
           </div>
         <h4 class="title_text"><strong>Building process</strong></h4>
           <div class="text_text">
-            Putting everything together we got following system. 
             <div class="column_image">
-              <img src="img/" alt="image" style="width:50%">
+              <img src="img/oxygenfilter/psaa.jpg" alt="robbe device" style="width:60%">
             </div>
-            Another important aspect of the building process is the control of the feed and purge valves. These consist of large electromagnets that will completely close the passage (or leave it open depending on their internal structure) when they are connected to a voltage of 220V. These valves must therefore be operated by a device that can automatically open and close them according to a certain sequence. In order to regulate this automatically, a control was made available from the VUB. This device came with a certain software with which the time at which the valves open and close could be set. This certainly worked, but the connection between the device and the computer was very sensitive to shocks and sometimes caused a failure in the system. That is why another device was made available. A few years ago, another group made an Arduino operator with which the valves could also be controlled. However, this device still required writing code and figuring out how the electrical components are connected to each other, but this seemed like a nice challenge to us. We also thought we could give our own spin to this by pimping the operator and also making it Bluetooth available. That is why we chose to further develop this option. 
+            Putting everything together we got following system. Another important aspect of the building process is the control of the feed and purge valves. These consist of large electromagnets that will completely close the passage (or leave it open depending on their internal structure) when they are connected to a voltage of 220V. These valves must therefore be operated by a device that can automatically open and close them according to a certain sequence. In order to regulate this automatically, a control was made available from the VUB. This device came with a certain software with which the time at which the valves open and close could be set. This certainly worked, but the connection between the device and the computer was very sensitive to shocks and sometimes caused a failure in the system. That is why another device was made available. A few years ago, another group made an Arduino operator with which the valves could also be controlled. However, this device still required writing code and figuring out how the electrical components are connected to each other, but this seemed like a nice challenge to us. We also thought we could give our own spin to this by pimping the operator and also making it Bluetooth available. That is why we chose to further develop this option. 
           </div>
           <div class="column_image">
-              <img src="img/" alt="robbe device" style="width:60%">
+              <img src="img/oxygenfilter/robbe.jpg" alt="robbe device" style="width:60%">
           </div>
           <div class="text_text">
             The operating principle of a relay is similar to that of a transistor or electronic button. A small voltage at the input ensures the on and off of a large connection to which mains voltage is applied. A relay can be used both in Normally On (NO) and in Normally Close (NC). To control the relay a digital pin on from an Arduino can be used. The Arduino "Uno" used here has 14 of these pins. Pin numbers 2 to 13 can be used for this application. Pins 0 and 1 are reserved for serial communication. These can also be used as digital output like the other pins, only then no communication can take place between the Arduino and another device such as a computer via the serial communication. The device consists of 6 relays for which 6 digital outputs are required.
@@ -134,9 +146,20 @@
             Therefore, it was considered to find a simpler solution that did not require any modifications to the lid and did not require any major changes to the electrical circuit. Ideally, the device should be able to be controlled remotely. Using an infrared controller would be an easy option, since we only need 1 digital pin for that. The problem with this is that infrared signals do not pass through solids and therefore cannot pass through the lid.
             <br><br>
             It was then decided to work with a Bluetooth module in the hope that we would be able to control the device with our smartphone. The Bluetooth module in question is the HC-05 module. In addition to the Vcc and the ground, this also requires 2 digital pins to exchange information. These must be the rx and tx pins of the Arduino. The two pins that remained must therefore be used for this specific module!
-            <br><br>
+            
+            <div class="column_image">
+              <img src="img/oxygenfilter/bluetooth.jpg" alt="bluetooth added" style="width:40%">
+            </div>
+
             The next step was to design an app that could communicate with the Arduino module. For this, it was decided to use the M.I.T. App Inventor website, which makes it easy to develop an application for a smartphone. The images below show the layout and the logic behind the final application.
-            <br><br>
+            
+            <div class="column_image">
+              <img src="img/oxygenfilter/mit1.png" alt="bluetooth added" style="width:80%">
+            </div>
+            <div class="column_image">
+              <img src="img/oxygenfilter/mit2.png" alt="bluetooth added" style="width:80%">
+            </div>
+
             There are 4 spinners that all have elements like “a500”, “a1000”, etc. This data is then sent via Bluetooth to the device. To connect it, the “bluetooth code” button must be pressed and then the correct connection must be checked. In the Arduino code that can be found underneath, the intention is to first make a distinction between the first characters. If this is an “a” then we know that the next 3 characters will be the new choice for the feed delay in milliseconds. Analogous for “b” and “c”, only these are then for the delay and the purge time. The “start” and “stop” buttons in the app are then used to start or stop the sequence. These send the letter “e” and “f” to the Arduino.
           </div>
         <h4 class="title_text"><strong>Conclusion</strong></h4>
